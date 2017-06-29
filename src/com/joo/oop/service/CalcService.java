@@ -3,30 +3,7 @@ package com.joo.oop.service;
 import java.util.Scanner;
 
 public class CalcService {
-	public String calcBMI(Double kg, Double cm){
-		
-		double bmi = kg/((cm*0.01)*(cm*0.01));
-		String result="";
-		/*if(30<=bmi){
-			result="비만";
-		}else if(29.9>=bmi&&bmi>=25){
-			result="과체중";
-		}else if(24.9>=bmi&&bmi>=18.5){
-			result="정상";
-		}else{
-			result="저체중";
-		}*/
-		if(30<=bmi){
-			result="비만";
-		}else if(bmi>=25){
-			result="과체중";
-		}else if(bmi>=18.5){
-			result="정상";
-		}else{
-			result="저체중";
-		}
-		return result;
-	}
+	
 	public int calcPlus(int a, int b){
 		
 		int result=a+b;
@@ -68,4 +45,5 @@ public class CalcService {
 		
 		return result;
 	}
+	
 }

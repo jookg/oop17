@@ -13,6 +13,6 @@ public class TaxCalculatorService {
 		}else{
 			taxrate=0.08;
 		}
-		return taxrate+"|"+pay*taxrate;
+		return taxrate+":"+pay*taxrate;
 	}
 }

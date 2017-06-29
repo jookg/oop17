@@ -1,14 +1,19 @@
 package com.joo.oop.controller;
 import java.util.Scanner;
+
+import com.joo.oop.service.BMIService;
 import com.joo.oop.service.CalcService;
+import com.joo.oop.service.GradeService;
 import com.joo.oop.service.TaxCalculatorService;
 import com.joo.oop.service.LeapYearService;
 public class Controller {
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
 		CalcService s2=new CalcService();
+		GradeService g=new GradeService();
+		BMIService bm=new BMIService();
 		while(true){
-			System.out.println("0.종료 1.bmi 2.tax 3.+ 4.계산기 5.윤년 6.시간계산");
+			System.out.println("0.종료 1.bmi 2.tax 3.+ 4.계산기 5.윤년 6.시간계산 7.학점");
 			String flag=s.next();
 			switch(flag){
 			case "0": 
@@ -17,11 +22,15 @@ public class Controller {
 			case "1": 
 				System.out.print("체중(kg)\n");
 				double kg = s.nextDouble();
+				bm.setKg(kg);
 				System.out.print("키(cm)\n");
 				double cm = s.nextDouble();
-				String state=s2.calcBMI(kg,cm);
+				bm.setCm(cm);
+				bm.setBmi();
+				bm.setState();
+				//String state=s2.calcBMI(kg,cm);
 				System.out.print("나의 체질량지수(BMI): ");
-				System.out.println(state);
+				System.out.println(bm.getState());
 				break;
 			case "2":
 				System.out.println("tax");
@@ -31,15 +40,14 @@ public class Controller {
 				int pay=s.nextInt();
 				TaxCalculatorService tx=new TaxCalculatorService();
 				String result3 = tx.excute(name,pay);
-				String[] tax = result3.split("|");
+				String[] tax = result3.split(":");
 				String taxrate = tax[0];
-				String rate = tax[1];
-				//double rate = Double.parseDouble(tax[1]);
+				double rate = Double.parseDouble(tax[1]);
 				//String.valueOf(b);
 				System.out.println("*****************");
 				System.out.println(" 이름  연봉  세율   납부할 세금");
 				System.out.println("-----------------");
-				System.out.println(String.format("  %s   %d   %s  %s",name,pay,rate,result3));
+				System.out.println(String.format("  %s   %d   %s  %.0f",name,pay,taxrate,rate));
 				System.out.println("*****************");
 				break;
 			case "3":
@@ -77,6 +85,30 @@ public class Controller {
 				int insec=s.nextInt();
 				String times=s2.calcTime(insec);
 				System.out.print(times);
+				break;
+			case "7":
+				System.out.println("이름");
+				String name1 = s.next();
+				g.SetName(name1);
+				System.out.println("전공");
+				String major = s.next();
+				g.SetMajor(major);
+				System.out.println("국어");
+				int kor = s.nextInt();
+				g.setKor(kor);
+				System.out.println("영어");
+				int eng = s.nextInt();
+				g.setEng(eng);
+				System.out.println("수학");
+				int math = s.nextInt();
+				g.setMath(math);
+				g.setTotal();
+				System.out.println(g.toString());
+				/*System.out.println("*****************************");
+				System.out.println(" 이름   전공   총점   평균   등급");
+				System.out.println("------------------------------");
+				System.out.print(String.format("  %s  |  %s  |  %d  |  %d  |  %s  |\n",g.getnName(),g.getMajor(),g.getTotal(),g.getAvg(),g.getGrade()));
+				System.out.println("*****************************");*/
 				break;
 			default :
 					System.out.println("잘못된입력입니다");
