@@ -1,4 +1,4 @@
-package com.joo.oop.service;
+package com.joo.oop.serviceImpl;
 
 import java.util.Scanner;
 

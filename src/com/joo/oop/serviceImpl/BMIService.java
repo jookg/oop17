@@ -1,4 +1,4 @@
-package com.joo.oop.service;
+package com.joo.oop.serviceImpl;
 
 public class BMIService {
 	private double bmi,kg,cm;

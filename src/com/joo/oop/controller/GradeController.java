@@ -1,10 +1,12 @@
 package com.joo.oop.controller;
 import com.joo.oop.domain.GradeBean;
 import com.joo.oop.service.GradeService;
+import com.joo.oop.serviceImpl.GradeServiceImpl;
+
 import javax.swing.*;
 public class GradeController {
 	public static void main(String[] args) {
-		GradeService gs=new GradeService();
+		GradeService gs=new GradeServiceImpl();
 		GradeBean gb=new GradeBean();
 		while(true){
 			switch(JOptionPane.showInputDialog("0.종료 1.grade")){

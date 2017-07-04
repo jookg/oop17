@@ -1,14 +1,14 @@
 package com.joo.oop.controller;
-import java.util.Scanner;
 
 import com.joo.oop.domain.MemberBean;
 import com.joo.oop.service.MemberService;
+import com.joo.oop.serviceImpl.MemberServiceImpl;
+
 import javax.swing.*;
 public class MemberContoller {
 
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		MemberService ms=new MemberService();
+		MemberService ms=new MemberServiceImpl();
 		MemberBean member=new MemberBean();
 		while(true){
 			//System.out.println("0.end 1.join 2.login");

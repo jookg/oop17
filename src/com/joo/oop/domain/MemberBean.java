@@ -27,6 +27,6 @@ public class MemberBean {
 		return ssn;
 	}
 	public String toString(){
-		return "환영합니다 ";
+		return "ID: "+id+" PW: "+pw+" 이름: "+name+" 주민번호: "+ssn;
 	}
 }
