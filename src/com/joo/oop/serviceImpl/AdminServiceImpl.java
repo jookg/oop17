@@ -1,24 +1,26 @@
 package com.joo.oop.serviceImpl;
 
+import java.util.Arrays;
+
 import com.joo.oop.domain.MemberBean;
 import com.joo.oop.service.AdminService;
 
 public class AdminServiceImpl implements AdminService {
 	private int memberCount;
 	MemberBean[] memberList;
-	//String[] memberList;
-	public AdminServiceImpl(int count){
+	public AdminServiceImpl(){
 		memberCount=0;
-		memberList=new MemberBean[count];
-		//memberList=new String[count];
+		memberList=new MemberBean[memberCount];
 	}
 	@Override
 	public void addMember(MemberBean member) {
-		//memberList[memberCount]=member.toString();
-		memberList[memberCount]=member;
-//		for (int i = 0; i < (memberCount+1); i++) {
-//			System.out.println(memberList[i].toString());
+		memberList=Arrays.copyOf(memberList,memberList.length+1);
+//		if(memberCount==memberList.length){
+//		MemberBean[] temp=new MemberBean[memberCount+1];
+//		System.arraycopy(memberList, 0, temp, 0, memberCount);
+//		memberList=temp;
 //		}
+		memberList[memberCount]=member;
 		memberCount++;
 	}
 
@@ -69,6 +71,22 @@ public class AdminServiceImpl implements AdminService {
 			if(member.getId().equals(memberList[i].getId())){
 				memberList[i].setPw(member.getPw());
 			break;
+			}
+		}
+		
+	}
+	@Override
+	public void delete(String id) {
+		for (int i = 0; i < memberCount; i++) {
+			if(id.equals(memberList[i].getId())){
+				//memberList[i]=memberList[memberCount-1];
+					for (; i < memberCount-1; i++) {
+						memberList[i]=memberList[i+1];
+					}
+				//memberList[memberCount-1]=null;
+				memberList=Arrays.copyOf(memberList,memberCount-1);
+				memberCount--;
+				break;
 			}
 		}
 		

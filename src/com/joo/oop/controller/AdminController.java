@@ -9,12 +9,11 @@ import com.joo.oop.serviceImpl.AdminServiceImpl;
 public class AdminController {
 
 	public static void main(String[] args) {
-		String sCount=JOptionPane.showInputDialog("관리자님 총회원수");
-		AdminService as=new AdminServiceImpl(Integer.parseInt(sCount));
+		AdminService as=new AdminServiceImpl();
 		MemberBean mb=null;
 		MemberBean[] mbList=null;
 		while(true){
-			switch (JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수 3.회원목록 4.ID조회 5.이름조회 6.update")) {
+			switch (JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수 3.회원목록 4.ID조회 5.이름조회 6.Update 7.Delete")) {
 			case "0":
 				JOptionPane.showMessageDialog(null, "종료");
 				return;
@@ -32,7 +31,9 @@ public class AdminController {
 				JOptionPane.showMessageDialog(null, as.countMembers());
 				break;
 			case "3":
+				mbList=as.getMembers();
 				JOptionPane.showMessageDialog(null, as.getMembers());
+				JOptionPane.showMessageDialog(null, mbList.length);
 				break;
 			case "4":
 				String id=JOptionPane.showInputDialog("ID");
@@ -49,6 +50,10 @@ public class AdminController {
 				mb.setPw(arr2[1]);
 				as.updatePw(mb);
 				JOptionPane.showMessageDialog(null, "업데이트 성공");
+				break;
+			case "7":
+				as.delete(JOptionPane.showInputDialog("ID"));
+				JOptionPane.showMessageDialog(null, "삭제되었습니다");
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "잘못된 입력");
